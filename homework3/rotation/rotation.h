@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <cmath>
+
 #include "Eigen/Core"
 #include "Eigen/Geometry"
 

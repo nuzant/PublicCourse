@@ -17,3 +17,30 @@ cc_binary(
         ":pointcloud",
     ],
 )
+
+cc_binary(
+    name = "histdata",
+    srcs = ["histdata.cc"],
+    deps = [
+        ":pointcloud",
+    ],
+)
+
+cc_binary(
+    name = "convert_to_grey",
+    srcs = ["convert_to_grey.cc"],
+    deps = [
+        "@opencv//:core",
+        "@opencv//:highgui",
+        "@opencv//:imgproc",
+    ],
+)
+cc_binary(
+    name = "lane",
+    srcs = ["lane.cc"],
+    deps = [
+        "@opencv//:core",
+        "@opencv//:highgui",
+        "@opencv//:imgproc",
+    ],
+)

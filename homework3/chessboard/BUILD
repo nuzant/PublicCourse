@@ -8,3 +8,13 @@ cc_binary(
         "@opencv//:highgui",
     ],
 )
+
+cc_binary(
+    name = "distortion",
+    srcs = ["distortion.cc"],
+    deps = [
+        "@opencv//:core",
+        "@opencv//:highgui",
+        "@opencv//:imgproc",
+    ],
+)

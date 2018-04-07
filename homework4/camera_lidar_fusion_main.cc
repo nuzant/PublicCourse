@@ -13,7 +13,7 @@
 #include "common/utils/strings/format.h"
 #include "homework4/camera_lidar_fusion_utils.h"
 
-DEFINE_string(pony_data_dir, "", "The path of pony data.");
+DEFINE_string(pony_data_dir, "/home/nuzant/PublicCourse/homework4/sample/", "The path of pony data.");
 DEFINE_string(lidar_device, "VelodyneDevice32c", "");
 DEFINE_string(camera_device, "GigECameraDeviceWideAngle", "");
 

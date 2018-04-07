@@ -24,6 +24,15 @@ cc_binary(
         "@glog//:glog",
         "@opencv//:core",
         "@opencv//:highgui",
+        "@opencv//:imgproc",
+        "@opencv//:flann",
+        "@opencv//:calib3d",
+        "@opencv//:ml",
+        "@opencv//:objdetect",
+        "@opencv//:features2d",
+        "@opencv//:contrib",
+        "@opencv//:photo",
+        "@opencv//:video",
     ],
 )
 
@@ -51,5 +60,15 @@ cc_binary(
         "//common/utils/file:path",
         "@glog//:glog",
         "@qt//:qt_widgets",
+    ],
+)
+
+cc_binary(
+    name = "boundary_detection",
+    srcs = ["boundary_detection.cc"],
+    deps = [
+        "@opencv//:core",
+        "@opencv//:highgui",
+        "@opencv//:imgproc",
     ],
 )

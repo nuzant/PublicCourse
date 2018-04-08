@@ -57,9 +57,9 @@ ImageUV Project3dPointToImage(const Eigen::Vector3d& point,
   if(point.z()!=0){
     xp = point.x()/point.z();
     yp = point.y()/point.z();
-    r2 = xp * xp + yp * yp
-    xpp = xp * (1 + k1 * r2 + k2 * r2 * r2 + k3 * r2 * r2 * r2);
-    ypp = yp * (1 + k1 * r2 + k2 * r2 * r2 + k3 * r2 * r2 * r2);
+    r2 = xp * xp + yp * yp;
+    xpp = xp * (1 + k1 * r2 + k2 * r2 * r2 + k3 * r2 * r2 * r2) + 2 * p1 * xp * yp + p2 * (r2 + 2 * xp * xp);
+    ypp = yp * (1 + k1 * r2 + k2 * r2 * r2 + k3 * r2 * r2 * r2) + p1 * (r2 + 2 * yp * yp) + 2 * p2 * xp * yp;
     u = fx * xpp + cx;
     v = fy * ypp + cy;
   }
@@ -77,7 +77,16 @@ std::vector<PixelInfo> ProjectPointCloudToImage(
    * NOTE, consider to filter out the points which are not within the camera FOV (field of view)
    * before projecting them onto image plane. Pointcloud's horizontal FOV is 360 degree and our
    * camera's horizontal FOV is about 80 here.
-   */
+   */ 
+  for(int i =0 ; i < pointcloud.points.size();i++){
+    Eigen::Vector3d p = extrinsic * pointcloud.points[i];
+    if(p.z()<0) continue;
+    ImageUV uv = Project3dPointToImage(p, intrinsic);
+    if(uv.u < image_width && uv.v < image_height && uv.u > 0 && uv.v > 0){
+      PixelInfo pi(uv , p);
+      pixel_info.push_back(pi);
+    }
+  }
   
   return pixel_info;
 }

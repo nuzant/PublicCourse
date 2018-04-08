@@ -8,7 +8,7 @@
 
 #include "homework4/pointcloud_viewer.h"
 
-DEFINE_string(pony_data_dir, "/home/nuzant/PublicCourse/homework4/sample/", "The path of pony data.");
+DEFINE_string(pony_data_dir, "", "The path of pony data.");
 
 int main(int argc, char* argv[]) {
   google::ParseCommandLineFlags(&argc, &argv, true);
@@ -18,7 +18,9 @@ int main(int argc, char* argv[]) {
   PointCloudViewer::Options options;
   PointCloudViewer viewer(options, nullptr, FLAGS_pony_data_dir);
   viewer.resize(1280, 960);
+  
   viewer.show();
+
   app.exec();
 
   return 0;

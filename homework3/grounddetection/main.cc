@@ -22,7 +22,7 @@ int main() {
   // ATTENTION!!! : please use absolute path for reading the data file.
   for(int i = 0; i < framenum; i ++){ //accumulating points
     PointCloud pointcloud = ReadPointCloudFromTextFile(
-      "/home/nuzant/PublicCourse/homework2/pony_data/VelodyneDevice32c/"+std::to_string(i)+".txt");
+      "/home/nuz/workspace/PublicCourse/homework2/pony_data/VelodyneDevice32c/"+std::to_string(i)+".txt");
 /*    std::cout << "Total points read: " << pointcloud.points.size() << std::endl;
     std::cout << "Rotation: " << std::endl;
     std::cout << pointcloud.rotation << std::endl;

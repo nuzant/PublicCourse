@@ -8,7 +8,7 @@ int main() {
   // ATTENTION!!! : please use absolute path for reading the data file.
 
   const PointCloud pointcloud = ReadPointCloudFromTextFile(
-      "/home/nuzant/PublicCourse/homework2/sample_data/VelodyneDevice32c/0.txt");
+      "/home/nuz/workspace/PublicCourse/homework2/sample_data/VelodyneDevice32c/0.txt");
   std::cout << "Total points read: " << pointcloud.points.size() << std::endl;
   std::cout << "Rotation: " << std::endl;
   std::cout << pointcloud.rotation << std::endl;

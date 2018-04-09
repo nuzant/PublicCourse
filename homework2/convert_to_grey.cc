@@ -23,7 +23,7 @@ void convert(const Mat &src, Mat &dst){
 int main() {
   cv::Mat image;
   // ATTENTION!!! : please use absolute path for reading the data file.
-  image = imread("/home/nuzant/PublicCourse/homework2/sample_data/GigECameraDeviceWideAngle/0.jpg", CV_LOAD_IMAGE_COLOR);
+  image = imread("/home/nuz/workspace/PublicCourse/homework2/sample_data/GigECameraDeviceWideAngle/0.jpg", CV_LOAD_IMAGE_COLOR);
   cv::Mat grey;
 
   grey.release();

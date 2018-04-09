@@ -3,7 +3,10 @@
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <QtWidgets/QApplication>
+#include <Eigen/Core>
+#include <Eigen/Geometry>
 
+#include "common/proto/perception.pb.h"
 #include "common/proto/object_labeling_3d.pb.h"
 #include "common/utils/display/painter_widget_base.h"
 #include "common/utils/file/file.h"
@@ -27,6 +30,8 @@ class PointCloudViewer : public utils::display::PainterWidgetBase {
 
   ~PointCloudViewer() override = default;
 
+  interface::perception::PerceptionObstacles extractPerceptionObstacles();
+
  protected:
   // Qt event handlers.
   void timerEvent(QTimerEvent* /*event*/) override {
@@ -49,6 +54,9 @@ class PointCloudViewer : public utils::display::PainterWidgetBase {
   std::unordered_map<std::string, std::string> ObtainDataToLabelMapping(
       const std::string& data_dir, const std::string& label_dir);
 
+  std::vector<interface::perception::PerceptionObstacles> ObtainPerceptionObstacles(
+      const std::unordered_map<std::string, std::string> data_label_map);
+
   void DrawPointCloudLabel(const PointCloudLabel& label);
 
   std::string data_dir_;
@@ -57,6 +65,7 @@ class PointCloudViewer : public utils::display::PainterWidgetBase {
   int file_index_ = -1;
   std::vector<math::Vec3d> points_;
   std::vector<PointCloudLabel> labels_;
+  std::vector<interface::perception::PerceptionObstacles> perception_obstacles_;
 
   std::unique_ptr<utils::display::OpenglPainter> gl_painter_;
   utils::display::OpenglPainter::SurfaceStyle default_prism_style_;

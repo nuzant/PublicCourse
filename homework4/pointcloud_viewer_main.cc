@@ -17,8 +17,14 @@ int main(int argc, char* argv[]) {
   QApplication app(argc, argv);
   PointCloudViewer::Options options;
   PointCloudViewer viewer(options, nullptr, FLAGS_pony_data_dir);
+  //
+  interface::perception::PerceptionObstacles pos;
+  interface::perception::PerceptionObstacle po;
+
+
+  //
   viewer.resize(1280, 960);
-  
+
   viewer.show();
 
   app.exec();

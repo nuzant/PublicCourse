@@ -11,7 +11,7 @@ using namespace cv;
 
 int main(){
     //use absolute directory!
-    std::string directory = "/home/nuzant/PublicCourse/homework2/pony_data/GigECameraDeviceWideAngle/";
+    std::string directory = "/home/nuz/workspace/PublicCourse/homework2/pony_data/GigECameraDeviceWideAngle/";
     cv::Mat src,dst,color_dst;
     
     for(int i = 0; i < 10; i++){

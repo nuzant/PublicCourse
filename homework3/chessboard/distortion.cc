@@ -42,7 +42,7 @@ void distort(const Mat &src, Mat &dst,const double k1,const double k2){
 int main() {
   cv::Mat image;
   // ATTENTION!!! : please use absolute path for reading the data file.
-  image = imread("/home/nuzant/PublicCourse/homework3/chessboard/chessboard_undistorted.png", CV_LOAD_IMAGE_COLOR);
+  image = imread("/home/nuz/workspace/PublicCourse/homework3/chessboard/chessboard_undistorted.png", CV_LOAD_IMAGE_COLOR);
 
   cv::Mat dst;
   dst.release();

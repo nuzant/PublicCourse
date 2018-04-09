@@ -13,6 +13,7 @@
 #include "homework3/grounddetection/pointcloud.h"
 
 int main() {
+  //std::cout<<"begin"<<std::endl;
   int framenum = 200;
   double maxx = 0.0;
   double maxy = 0.0;
@@ -22,12 +23,7 @@ int main() {
   // ATTENTION!!! : please use absolute path for reading the data file.
   for(int i = 0; i < framenum; i ++){ //accumulating points
     PointCloud pointcloud = ReadPointCloudFromTextFile(
-      "/home/nuz/workspace/PublicCourse/homework2/pony_data/VelodyneDevice32c/"+std::to_string(i)+".txt");
-/*    std::cout << "Total points read: " << pointcloud.points.size() << std::endl;
-    std::cout << "Rotation: " << std::endl;
-    std::cout << pointcloud.rotation << std::endl;
-    std::cout << "Translation: " << std::endl;
-    std::cout << pointcloud.translation.transpose() << std::endl; */
+      "/home/nuz/workspace/PublicCourse/homework2/pony_data/VelodyneDevice32c/"+std::to_string(i)+".txt"); 
     for(int j = 0; j < pointcloud.points.size(); j++){
       Eigen::Vector3d p;
       p = (pointcloud.rotation * pointcloud.points[j]) + pointcloud.translation;
@@ -84,6 +80,7 @@ int main() {
     //image.at<double>
   }
 
+  std::cout<<"image"<<std::endl;
   imshow("ground",image);
   cv::waitKey(0);
   return 0;

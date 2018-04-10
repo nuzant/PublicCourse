@@ -139,8 +139,8 @@ toolchain {
     linker_flag: "-Wl,--gc-sections"
 
     # Tune for Intel Haswell CPUs and all newer CPUs
-    compiler_flag: "-mtune=haswell"
-    compiler_flag: "-march=haswell"
+    #compiler_flag: "-mtune=haswell"
+    #compiler_flag: "-march=haswell"
   }
 
   linking_mode_flags { mode: MOSTLY_STATIC }

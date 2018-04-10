@@ -30,7 +30,7 @@ class PointCloudViewer : public utils::display::PainterWidgetBase {
 
   ~PointCloudViewer() override = default;
 
-  interface::perception::PerceptionObstacles extractPerceptionObstacles();
+ // interface::perception::PerceptionObstacles extractPerceptionObstacles();
 
  protected:
   // Qt event handlers.

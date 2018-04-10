@@ -119,6 +119,7 @@ void PointCloudViewer::DrawPointCloudLabel(const PointCloudLabel& label) {
       label.ceiling, label.floor, default_prism_style_);
 }
 
+/*
 std::vector<interface::perception::PerceptionObstacles> ObtainPerceptionObstacles(
     const std::unordered_map<std::string, std::string> data_label_map,const std::vector<std::string> pointcloud_files){
       std::vector<interface::perception::PerceptionObstacles> poss;
@@ -134,22 +135,24 @@ std::vector<interface::perception::PerceptionObstacles> ObtainPerceptionObstacle
             po.set_id(object.id());
             po.set_heading(object.heading());
             po.set_height(object.height());
+            po.set_type(object.type());
             CHECK_GT(object.polygon().point_size(), 0);
             for (const auto& point : object.polygon().point()) {
               po.add_polygon_point(point);
             }
             //pointcloud part
-            pos.add_obstacle(po);
             for(const auto &point:pointcloud.points){
               for(int i = 0; i < object.polygon().point_size()-1;i++){
                 Eigen::Vector2d v1(point.x()-object.polygon().point(i).x(),point.y()-object.polygon().point(i).y());
                 Eigen::Vector2d v2(point.x()-object.polygon().point(i+1).x(),point.y()-object.polygon().point(i+1).y());
-                if(v1.cross(v2)>0) po.add 
+                if(v1.cross(v2)>0) po.add_object_points(point);
               }
             }
+            pos.add_obstacle(po);
           } 
         }
         poss.emplace_back(pos);
       }
       return poss;
 }
+*/

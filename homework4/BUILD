@@ -72,3 +72,16 @@ cc_binary(
         "@opencv//:imgproc",
     ],
 )
+
+cc_binary(
+    name = "perception_obstacles",
+    srcs = ["perception_obstacles.cc"],
+    deps = [
+        "//homework2:pointcloud",
+        "//common/proto:cc_object_labeling_3d_proto",
+        "//common/proto:cc_perception_proto",
+        "//common/utils/file:path",
+        "//common/utils/file:file",
+        "@eigen//:eigen"
+    ],
+)

@@ -14,7 +14,6 @@ PointCloudViewer::PointCloudViewer(Options options, QWidget* parent, const std::
   const std::string pointcloud_label_dir =
       file::path::Join(data_dir_, "label", FLAGS_lidar_device);
   data_label_map_ = ObtainDataToLabelMapping(pointcloud_dir, pointcloud_label_dir);
-  perception_obstacles_ = ObtainPerceptionObstacles(data_label_map_,pointcloud_files_);
 
   default_prism_style_.show_vertices = true;
   default_prism_style_.show_edge = true;
@@ -118,41 +117,3 @@ void PointCloudViewer::DrawPointCloudLabel(const PointCloudLabel& label) {
       utils::ConstArrayView<math::Vec2d>(label.polygon.data(), label.polygon.size()),
       label.ceiling, label.floor, default_prism_style_);
 }
-
-/*
-std::vector<interface::perception::PerceptionObstacles> ObtainPerceptionObstacles(
-    const std::unordered_map<std::string, std::string> data_label_map,const std::vector<std::string> pointcloud_files){
-      std::vector<interface::perception::PerceptionObstacles> poss;
-      for(const auto& pointcloud_file: pointcloud_files){
-        const PointCloud pointcloud = ReadPointCloudFromTextFile(pointcloud_file);
-        interface::perception::PerceptionObstacles pos;
-        if (data_label_map_.count(pointcloud_file)) {
-          interface::object_labeling::ObjectLabels object_labels;
-          CHECK(file::ReadFileToProto(data_label_map_[pointcloud_file], &object_labels));
-          //label part
-          for (const auto& object : object_labels.object()) {
-            interface::perception::PerceptionObstacle po;
-            po.set_id(object.id());
-            po.set_heading(object.heading());
-            po.set_height(object.height());
-            po.set_type(object.type());
-            CHECK_GT(object.polygon().point_size(), 0);
-            for (const auto& point : object.polygon().point()) {
-              po.add_polygon_point(point);
-            }
-            //pointcloud part
-            for(const auto &point:pointcloud.points){
-              for(int i = 0; i < object.polygon().point_size()-1;i++){
-                Eigen::Vector2d v1(point.x()-object.polygon().point(i).x(),point.y()-object.polygon().point(i).y());
-                Eigen::Vector2d v2(point.x()-object.polygon().point(i+1).x(),point.y()-object.polygon().point(i+1).y());
-                if(v1.cross(v2)>0) po.add_object_points(point);
-              }
-            }
-            pos.add_obstacle(po);
-          } 
-        }
-        poss.emplace_back(pos);
-      }
-      return poss;
-}
-*/

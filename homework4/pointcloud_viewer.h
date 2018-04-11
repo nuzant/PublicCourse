@@ -54,9 +54,6 @@ class PointCloudViewer : public utils::display::PainterWidgetBase {
   std::unordered_map<std::string, std::string> ObtainDataToLabelMapping(
       const std::string& data_dir, const std::string& label_dir);
 
-  std::vector<interface::perception::PerceptionObstacles> ObtainPerceptionObstacles(
-      const std::unordered_map<std::string, std::string> data_label_map);
-
   void DrawPointCloudLabel(const PointCloudLabel& label);
 
   std::string data_dir_;
@@ -65,7 +62,6 @@ class PointCloudViewer : public utils::display::PainterWidgetBase {
   int file_index_ = -1;
   std::vector<math::Vec3d> points_;
   std::vector<PointCloudLabel> labels_;
-  std::vector<interface::perception::PerceptionObstacles> perception_obstacles_;
 
   std::unique_ptr<utils::display::OpenglPainter> gl_painter_;
   utils::display::OpenglPainter::SurfaceStyle default_prism_style_;

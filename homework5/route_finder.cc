@@ -59,16 +59,18 @@ int main(){
         interface::geometry::Point3D start = Point2D_to_3D(route.start_point());
         interface::geometry::Point3D end = Point2D_to_3D(route.end_point());
         int index_sl,index_sp,index_el,index_ep;
+        double mindist = 999;
         //find first route point
         for(int j = 0 ; j < map.lane_size(); j++){
             for(int k = 0; k < map.lane(j).central_line().point_size(); k++){
                 interface::geometry::Point3D point = map.lane(j).central_line().point(k);
-                if(dist(start,point)<4) {
+                if(dist(start,point)<mindist) {
                     //std::cout<<dist(start,point)<<std::endl;
                     //std::cout<<start.x()<<" "<<start.y() <<std::endl;
                     //std::cout<<point.x()<<" "<<point.y() <<std::endl;
                     index_sl = j;
                     index_sp = k;
+                    mindist = dist(start,point);
                 }
             }
         }
@@ -121,26 +123,27 @@ int main(){
         }
         //std::cout<<"sz"<<route_lanes.size()<<std::endl;
         for(int j = 0 ; j < route_lanes.size();j++){
-            //std::cout<<route_lanes[route_lanes.size()-1-j].id().id()<<std::endl;
+            //std::cout<<map.lane(index_sl).id().id()<<std::endl;
             if(j==0){
                 //std::cout<<j<<std::endl;
                 for(int k = index_sp ; k < map.lane(index_sl).central_line().point_size();k++){
                     auto *point = route.add_route_point();
                     point -> CopyFrom(Point3D_to_2D(map.lane(index_sl).central_line().point(k)));
                 }
+                //std::cout<<index_sp<<" " << map.lane(index_sl).central_line().point_size()<< std::endl;
             }else if(j == route_lanes.size()-1){
                 //std::cout<<j<<std::endl;
                 for(int k = 0; k <= index_ep ; k++){
                     auto *point = route.add_route_point();
                     point -> CopyFrom(Point3D_to_2D(map.lane(index_el).central_line().point(k)));
                 }
-            }else {
-                //std::cout<<j<<std::endl;
-                for(int k = 0; k < route_lanes[route_lanes.size()-1-j].central_line().point_size();k++){
-                    auto *point = route.add_route_point();
-                    point -> CopyFrom(Point3D_to_2D(
-                        route_lanes[route_lanes.size()-1-j].central_line().point(k)));
-                }
+                break;
+            }
+            //std::cout<<j<<std::endl;
+            for(int k = 0; k < route_lanes[route_lanes.size()-1-j].central_line().point_size();k++){
+                auto *point = route.add_route_point();
+                point -> CopyFrom(Point3D_to_2D(
+                    route_lanes[route_lanes.size()-1-j].central_line().point(k)));
             }
         }
         //std::cout<<"111"<<std::endl;

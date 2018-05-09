@@ -6,6 +6,7 @@ cc_library(
     srcs = ["agents.cc"],
     deps = [
         "//homework6/agents/sample:sample_agent",
+        "//homework6/agents/myagent:my_agent",
         "//homework6/simulation:vehicle_agent_factory",
     ],
     alwayslink = 1,

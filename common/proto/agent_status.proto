@@ -18,6 +18,9 @@ message SimulationStatus {
 message RouteStatus {
     // Destination of the current trip route
     optional interface.geometry.Point3D destination = 5;
+    // Planned route of the current trip route
+    // # can we modify proto files?
+    //optional interface.route.Route route = 6;
 }
 
 message AgentStatus {

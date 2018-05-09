@@ -127,13 +127,10 @@ toolchain {
     compiler_flag: "-ffunction-sections"
     compiler_flag: "-fdata-sections"
     linker_flag: "-Wl,--gc-sections"
-<<<<<<< HEAD
 
     # Tune for Intel Haswell CPUs and all newer CPUs
     #compiler_flag: "-mtune=haswell"
     #compiler_flag: "-march=haswell"
-=======
->>>>>>> 36ca6a9212eb4abdc49aead8d8a6007198cabaf7
   }
 
   linking_mode_flags { mode: MOSTLY_STATIC }

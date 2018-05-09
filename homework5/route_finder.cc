@@ -7,7 +7,6 @@
 #include "common/proto/route.pb.h"
 #include <string>
 #include <vector>
-#include <unordered_map>
 
 double dist(interface::geometry::Point3D p1, interface::geometry::Point3D p2){
     double dx = p1.x()-p2.x();
